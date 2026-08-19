@@ -1,8 +1,6 @@
-// A unique namespace for your website's database
-// I used your GitHub username from the image URL to keep it unique
-const NAMESPACE = 'bloxd_cheats_noriie';
+const FALLEN_KEY = 'bloxd_cheats_noriie_fallen_v1';
+const SHITIZEN_KEY = 'bloxd_cheats_noriie_shitizen_v1';
 
-// 1. Existing Notice Function (Kept intact)
 function showNotice(message) {
   const notice = document.getElementById("notice");
   notice.textContent = message;
@@ -14,45 +12,41 @@ function showNotice(message) {
   }, 3000);
 }
 
-// 2. Fetch the current download counts when the page loads
 async function loadCounts() {
   try {
-    // Get Fallen count
-    let resFallen = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/fallen`);
+    let resFallen = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${FALLEN_KEY}`);
     if (resFallen.ok) {
       let dataFallen = await resFallen.json();
-      document.getElementById('count-fallen').innerText = dataFallen.count;
+      document.getElementById('count-fallen').innerText = dataFallen.value;
+    } else {
+      document.getElementById('count-fallen').innerText = "0";
     }
 
-    // Get Shitizen count
-    let resShitizen = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/shitizen`);
+    let resShitizen = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${SHITIZEN_KEY}`);
     if (resShitizen.ok) {
       let dataShitizen = await resShitizen.json();
-      document.getElementById('count-shitizen').innerText = dataShitizen.count;
+      document.getElementById('count-shitizen').innerText = dataShitizen.value;
+    } else {
+      document.getElementById('count-shitizen').innerText = "0";
     }
   } catch (error) {
-    console.error("Error loading counts:", error);
+    console.error(error);
   }
 }
 
-// 3. Increment the counter when a user clicks download
 async function incrementDownload(clientName) {
-  // Show the cool bottom notice you styled in CSS!
-  showNotice(`Starting download for ${clientName}...`);
+  showNotice(`Đang tải xuống ${clientName}...`);
+  const key = clientName === 'fallen' ? FALLEN_KEY : SHITIZEN_KEY;
 
   try {
-    // Tell the API to add +1 to the count
-    let res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${clientName}/up`);
+    let res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${key}`);
     if (res.ok) {
       let data = await res.json();
-      
-      // Update the number visually on the webpage immediately
-      document.getElementById(`count-${clientName}`).innerText = data.count;
+      document.getElementById(`count-${clientName}`).innerText = data.value;
     }
   } catch (error) {
-    console.error("Error updating count:", error);
+    console.error(error);
   }
 }
 
-// Run the load function automatically when the page opens
 window.onload = loadCounts;
