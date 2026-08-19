@@ -230,8 +230,12 @@ body {
   box-shadow: 0 0 10px rgba(88, 101, 242, 0.3);
 }
 
+/* Cập nhật lớp cho SVG logo Discord */
 .discord-icon {
-  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .notice {
