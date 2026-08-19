@@ -27,19 +27,16 @@ body {
   overflow-x: hidden;
 }
 
-.background-grid {
+#background-grid {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.35;
-  background-image:
-    radial-gradient(rgba(0, 255, 119, 0.4) 0.8px, transparent 0.8px);
-  background-size: 30px 30px;
-  mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
-  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
+  z-index: 0;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: min(1100px, calc(100% - 40px));
   margin: 0 auto;
   padding: 0 0 40px;
@@ -230,7 +227,6 @@ body {
   box-shadow: 0 0 10px rgba(88, 101, 242, 0.3);
 }
 
-/* Cập nhật lớp cho SVG logo Discord */
 .discord-icon {
   width: 20px;
   height: 20px;
