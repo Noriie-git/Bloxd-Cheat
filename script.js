@@ -1,5 +1,8 @@
-const NAMESPACE = 'bloxd-cheat-noriie';
+// A unique namespace for your website's database
+// I used your GitHub username from the image URL to keep it unique
+const NAMESPACE = 'bloxd_cheats_noriie';
 
+// 1. Existing Notice Function (Kept intact)
 function showNotice(message) {
   const notice = document.getElementById("notice");
   notice.textContent = message;
@@ -11,34 +14,45 @@ function showNotice(message) {
   }, 3000);
 }
 
-async function fetchCounts() {
-  const clients = ['fallen', 'shitizen'];
-  for (const client of clients) {
-    try {
-      const response = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${client}`);
-      const data = await response.json();
-      if (data && data.count !== undefined) {
-        document.getElementById(`count-${client}`).textContent = data.count;
-      }
-    } catch (error) {
-      document.getElementById(`count-${client}`).textContent = '0';
-    }
-  }
-}
-
-async function incrementDownload(client) {
-  const clientName = client.charAt(0).toUpperCase() + client.slice(1);
-  showNotice(`Downloading ${clientName} Client...`);
-
+// 2. Fetch the current download counts when the page loads
+async function loadCounts() {
   try {
-    const response = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${client}/up`);
-    const data = await response.json();
-    if (data && data.count !== undefined) {
-      document.getElementById(`count-${client}`).textContent = data.count;
+    // Get Fallen count
+    let resFallen = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/fallen`);
+    if (resFallen.ok) {
+      let dataFallen = await resFallen.json();
+      document.getElementById('count-fallen').innerText = dataFallen.count;
+    }
+
+    // Get Shitizen count
+    let resShitizen = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/shitizen`);
+    if (resShitizen.ok) {
+      let dataShitizen = await resShitizen.json();
+      document.getElementById('count-shitizen').innerText = dataShitizen.count;
     }
   } catch (error) {
-    console.error('Error updating download count:', error);
+    console.error("Error loading counts:", error);
   }
 }
 
-document.addEventListener('DOMContentLoaded', fetchCounts);
+// 3. Increment the counter when a user clicks download
+async function incrementDownload(clientName) {
+  // Show the cool bottom notice you styled in CSS!
+  showNotice(`Starting download for ${clientName}...`);
+
+  try {
+    // Tell the API to add +1 to the count
+    let res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${clientName}/up`);
+    if (res.ok) {
+      let data = await res.json();
+      
+      // Update the number visually on the webpage immediately
+      document.getElementById(`count-${clientName}`).innerText = data.count;
+    }
+  } catch (error) {
+    console.error("Error updating count:", error);
+  }
+}
+
+// Run the load function automatically when the page opens
+window.onload = loadCounts;
