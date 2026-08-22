@@ -8,9 +8,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">Bloxd<span>.io</span></a>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#terms">Terms</a></li>
+      </ul>
+      <a href="https://discord.gg/d2tuQrwR" target="_blank" class="nav-discord-btn">Discord</a>
+    </div>
+  </nav>
+
   <canvas id="background-grid"></canvas>
 
-  <main class="container">
+  <main class="container" id="home">
     <header class="hero">
       <div class="title-container">
         <img src="BloxdIcon.png" alt="Bloxd Icon" class="hero-icon">
@@ -25,7 +38,6 @@
         <div class="card-content">
           <h2>Fallen Client</h2>
           <p>Version 1.7</p>
-          
           <a class="button primary" href="Fallen.txt" download onclick="showNotice('Downloading Fallen')">Download</a>
           <a class="button discord" href="https://discord.gg/DM4cFBnPTH" target="_blank" rel="noopener noreferrer">
             <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
@@ -41,7 +53,6 @@
         <div class="card-content">
           <h2>Shitizen Client</h2>
           <p>Version idk</p>
-          
           <a class="button primary" href="Shitizen.txt" download onclick="showNotice('Downloading Shitizen')">Download</a>
           <a class="button discord" href="https://discord.gg/fXwuQtVD9t" target="_blank" rel="noopener noreferrer">
             <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
@@ -57,7 +68,6 @@
         <div class="card-content">
           <h2>Rex Client</h2>
           <p>Version idk</p>
-          
           <a class="button primary" href="Rex.txt" download onclick="showNotice('Downloading Rex')">Download</a>
           <a class="button discord" href="https://discord.gg/z3bG3twewh" target="_blank" rel="noopener noreferrer">
             <svg class="discord-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
@@ -67,6 +77,37 @@
           </a>
         </div>
       </article>
+    </section>
+
+    <section id="features" class="info-section">
+      <h2>Features</h2>
+      <div class="info-card">
+        <h3>Aimbot & ESP</h3>
+        <p>Gain the upper hand with precise tracking and player visibility across the map.</p>
+        <h3>Movement Enhancements</h3>
+        <p>Unlock fly, speed, and high jump capabilities to move around freely.</p>
+        <h3>Custom UI</h3>
+        <p>Clean and easy-to-use interfaces to toggle your mods in-game smoothly.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="info-section">
+      <h2>FAQ</h2>
+      <div class="info-card">
+        <h3>How do I install these clients?</h3>
+        <p>Download the script files and load them using an extension like Tampermonkey in your browser.</p>
+        <h3>Is it safe to use on my main account?</h3>
+        <p>We highly recommend using alternate accounts when testing or using these clients to prevent any potential bans.</p>
+        <h3>My client is not working, what do I do?</h3>
+        <p>Make sure the game has not updated recently. Join our Discord server for support and updated versions.</p>
+      </div>
+    </section>
+
+    <section id="terms" class="info-section">
+      <h2>Terms</h2>
+      <div class="info-card">
+        <p>By downloading and using these files, you acknowledge that you are doing so at your own risk. The developers of these clients are not responsible for any account bans, suspensions, or damages caused by using these tools in Bloxd.io.</p>
+      </div>
     </section>
 
     <footer>
