@@ -87,6 +87,7 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* CSS cho thanh menu mới */
 .action-buttons {
   display: flex;
   justify-content: center;
@@ -128,6 +129,7 @@ body {
   box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
 }
 
+/* Khu vực thẻ Clients */
 .cards {
   display: flex;
   justify-content: center;
@@ -214,6 +216,7 @@ body {
   font-weight: 500;
 }
 
+/* CSS CHO NÚT BẤM BÊN TRONG THẺ (LỖI CỦA BẠN ĐÃ ĐƯỢC FIX TẠI ĐÂY) */
 .button {
   width: 100%;
   min-height: 54px;
