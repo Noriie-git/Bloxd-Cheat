@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg: #030a08;
   --card: rgba(18, 23, 21, 0.45);
@@ -12,11 +17,6 @@
   --muted: #8b9994;
 }
 
-html {
-  min-height: 100%;
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -24,13 +24,19 @@ body {
   background:
     radial-gradient(circle at 50% 0%, rgba(0, 255, 110, 0.08), transparent 50%),
     var(--bg);
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+a {
+  color: inherit;
 }
 
 #background-grid {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
 }
@@ -67,8 +73,13 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .hero h1 {
@@ -87,29 +98,44 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* CSS cho thanh menu mới */
 .action-buttons {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
+  align-items: center;
+  gap: 12px;
+  margin: 28px auto 0;
+  padding: 0;
   flex-wrap: wrap;
 }
 
-.action-btn {
-  padding: 10px 24px;
+.action-buttons a.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 95px;
+  min-height: 44px;
+  padding: 10px 20px;
+  margin: 0;
   border-radius: 12px;
   text-decoration: none;
   color: var(--text);
   font-size: 15px;
   font-weight: 700;
-  background: rgba(18, 23, 21, 0.6);
+  line-height: 1;
+  background: rgba(18, 23, 21, 0.75);
   border: 1px solid var(--border);
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.action-btn:hover {
+.action-buttons a.action-btn:hover {
   background: rgba(0, 255, 119, 0.1);
   border-color: var(--green);
   color: var(--green);
@@ -117,22 +143,23 @@ body {
   box-shadow: 0 5px 15px rgba(0, 255, 119, 0.2);
 }
 
-.action-btn.discord {
+.action-buttons a.action-btn.discord {
   background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
   border-color: #5865f2;
-  color: white;
+  color: #fff;
 }
 
-.action-btn.discord:hover {
-  filter: brightness(1.1);
-  color: white;
+.action-buttons a.action-btn.discord:hover {
+  background: linear-gradient(135deg, #6875ff 0%, #5865f2 100%);
+  border-color: #6875ff;
+  color: #fff;
   box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
 }
 
-/* Khu vực thẻ Clients */
 .cards {
   display: flex;
   justify-content: center;
+  align-items: stretch;
   gap: 35px;
   flex-wrap: wrap;
 }
@@ -144,17 +171,28 @@ body {
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 24px;
-  background: linear-gradient(145deg, rgba(30, 35, 33, 0.7), rgba(10, 15, 12, 0.8));
+  background: linear-gradient(
+    145deg,
+    rgba(30, 35, 33, 0.7),
+    rgba(10, 15, 12, 0.8)
+  );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .card:hover {
   transform: translateY(-10px) scale(1.02);
   border-color: rgba(0, 255, 119, 0.6);
-  box-shadow: 0 20px 40px rgba(0, 255, 119, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 20px 40px rgba(0, 255, 119, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 .shine {
@@ -198,7 +236,7 @@ body {
 }
 
 .card h2::after {
-  content: '';
+  content: "";
   display: block;
   width: 50px;
   height: 4px;
@@ -216,7 +254,6 @@ body {
   font-weight: 500;
 }
 
-/* CSS CHO NÚT BẤM BÊN TRONG THẺ (LỖI CỦA BẠN ĐÃ ĐƯỢC FIX TẠI ĐÂY) */
 .button {
   width: 100%;
   min-height: 54px;
@@ -234,18 +271,25 @@ body {
   letter-spacing: 0.5px;
   border: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .button.primary {
   color: #00190b;
   background: linear-gradient(135deg, var(--green) 0%, #00d45d 100%);
-  box-shadow: 0 0 20px rgba(0, 255, 114, 0.25), inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 0 20px rgba(0, 255, 114, 0.25),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.15);
 }
 
 .button.primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 255, 114, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 8px 25px rgba(0, 255, 114, 0.4),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.15);
   filter: brightness(1.1);
 }
 
@@ -255,15 +299,19 @@ body {
 }
 
 .button.discord {
-  color: white;
+  color: #fff;
   background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
-  box-shadow: 0 0 20px rgba(88, 101, 242, 0.15), inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 0 20px rgba(88, 101, 242, 0.15),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.15);
   margin-bottom: 0;
 }
 
 .button.discord:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 8px 25px rgba(88, 101, 242, 0.4),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.15);
   filter: brightness(1.1);
 }
 
@@ -290,14 +338,19 @@ body {
   border-radius: 16px;
   background: rgba(9, 20, 16, 0.95);
   backdrop-filter: blur(10px);
-  color: white;
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
   font-size: 15px;
   font-weight: 600;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 119, 0.2);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 255, 119, 0.2);
   opacity: 0;
   pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 10;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
 }
 
 .notice.show {
@@ -319,7 +372,7 @@ body {
 }
 
 .info-section h2::after {
-  content: '';
+  content: "";
   display: block;
   width: 50px;
   height: 4px;
@@ -330,7 +383,11 @@ body {
 }
 
 .info-card {
-  background: linear-gradient(145deg, rgba(30, 35, 33, 0.7), rgba(10, 15, 12, 0.8));
+  background: linear-gradient(
+    145deg,
+    rgba(30, 35, 33, 0.7),
+    rgba(10, 15, 12, 0.8)
+  );
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 40px;
@@ -372,11 +429,13 @@ footer {
   .hero {
     padding-bottom: 40px;
   }
+
   .cards {
     flex-direction: column;
     align-items: center;
     gap: 30px;
   }
+
   .card,
   .card-content {
     min-height: 360px;
@@ -385,11 +444,31 @@ footer {
 
 @media (max-width: 480px) {
   .container {
-    width: min(100% - 24px, 480px);
+    width: min(calc(100% - 24px), 480px);
   }
+
   .hero h1 {
     font-size: 40px;
   }
+
+  .title-container {
+    gap: 10px;
+  }
+
+  .hero-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .action-buttons {
+    gap: 8px;
+  }
+
+  .action-buttons a.action-btn {
+    min-width: 85px;
+    padding: 10px 15px;
+  }
+
   .info-card {
     padding: 25px;
   }
